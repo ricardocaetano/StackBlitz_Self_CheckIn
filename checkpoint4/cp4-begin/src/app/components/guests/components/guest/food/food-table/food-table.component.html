@@ -1,0 +1,19 @@
+<ng-container *mobxAutorun>
+  <lf-table #lfTable [path]="path">
+    <lf-table-header>
+      <lf-table-column id = "index"></lf-table-column>
+      <lf-table-column id = "date"></lf-table-column>
+      <lf-table-column id = "typeOfFood"></lf-table-column>
+      <!--TODO CP4: create a price table column-->
+    </lf-table-header>  
+    <ng-template #lfTableRowTemplate let-i="index">
+      <tr lfTableRow [path]="i" #tableRow>
+        <td lfTableCell>{{i + 1}}</td>
+        <td lfTableCell><lf-date path = "date"></lf-date></td>
+        <td lfTableCell><lf-select path="typeOfFood"></lf-select></td>
+         <!--TODO CP4: create a price computed element-->
+      </tr>
+    </ng-template>
+  </lf-table>
+  <!--TODO CP4: create a subTotal computed element-->
+</ng-container>
