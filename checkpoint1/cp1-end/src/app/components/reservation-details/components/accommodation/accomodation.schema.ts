@@ -1,7 +1,7 @@
-import { recordSchema, listSchema} from "@lightweightform/storage";
+import { recordSchema, tableSchema} from "@lightweightform/storage";
 
 export const accomodationSchema  = recordSchema({
-  accomodationsTable: listSchema(
+  accomodationsTable: tableSchema(
     recordSchema({
         
       }
