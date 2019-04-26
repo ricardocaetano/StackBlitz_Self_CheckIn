@@ -1,9 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {LfFileStorage, LfStorage, LfI18n} from '@lightweightform/core';
-import {AppComponent as LfAppComponent} from '@lightweightform/bootstrap-theme';
-import { configure } from 'mobx';
-
-configure({ isolateGlobalState: true });
+import {AppComponent as LfAppComponent,/* ModalComponent*/} from '@lightweightform/bootstrap-theme';
 
 @Component({
   selector: 'sc-root',

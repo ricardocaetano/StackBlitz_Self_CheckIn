@@ -1,7 +1,7 @@
-import { recordSchema, stringSchema, listSchema, booleanSchema} from "@lightweightform/storage";
+import { recordSchema, stringSchema, /*listSchema,*/ booleanSchema, tableSchema} from "@lightweightform/storage";
 
 export const accomodationSchema  = recordSchema({
-  accomodationsTable: listSchema(
+  accomodationsTable: tableSchema(
     recordSchema({
         name : stringSchema({
             isRequired : true,

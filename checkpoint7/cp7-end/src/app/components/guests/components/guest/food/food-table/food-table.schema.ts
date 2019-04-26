@@ -1,8 +1,8 @@
-import { recordSchema, stringSchema, dateSchema, numberSchema, listSchema } from "@lightweightform/storage";
+import { recordSchema, stringSchema, dateSchema, numberSchema/*, listSchema*/, tableSchema } from "@lightweightform/storage";
 
 export const foodTableSchema : ((string) => object) = path => {
     return {
-      [path]: listSchema(
+      [path]: tableSchema(
             recordSchema({
                 index : stringSchema({
                 }),

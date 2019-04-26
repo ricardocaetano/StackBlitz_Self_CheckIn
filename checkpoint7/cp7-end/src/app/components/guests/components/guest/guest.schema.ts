@@ -25,7 +25,7 @@ export const guestSchema  = recordSchema({
 }, {isForm:true,
 })
 
-function emailValidator(ctx: LfStorage): ValidationIssue | undefined{    
+function emailValidator (ctx: LfStorage): ValidationIssue | void{ 
     const email = ctx.get();
     let emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     emailRegExp.test(email);
