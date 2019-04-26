@@ -35,6 +35,7 @@ This guide is divided in six checkpoints:
 - Implement LF fields with computed values
 - Customize computed values display
 - Add form's actions to the LF application
+- Add internationalization features in your LF application
 
 ### Checkpoint #1
 
@@ -46,11 +47,11 @@ _**Goal:** Define the structure of the application_
 	 ```
 		/*index.html*/
 		<head>
-		...
+			...
 			<base href="/"/>
 			...
 			<title>LF self check-in app</title>
-		...
+			...
 		</head>
 	 ```
 	 
@@ -62,11 +63,16 @@ _**Goal:** Define the structure of the application_
 		<router-outlet></router-outlet>
 	 ```
 	 
-5. Define the base routes that will define the main paths of your app:
-	5.1. Define the reservations-details component to be the default route of you app
+5. Now let´s define some base routes that will be used by your app to identify each element:
+
+		5.1. Define the reservations-details component to be the default route of you app
+
 	5.2. Declare the accomodation component as a child of the reservationDetails
+
 	5.3. Declare food and other-services as children of the guest/:index2
+
 	5.4. In the final your app routes should look like this:
+
 		```
 			const routes: LfRoutes = [
   
@@ -98,26 +104,26 @@ _**Goal:** Define the structure of the application_
 	
 	6.3. Create the translation for the reservations-schema and add it the app.en.US file
 	
-	```
-		/*reservations-details.en-US.ts*/
-		export const RESERVATION_DETAILS_I18N_EN_US = LfI18n.mergeTranslations({
-			...
-			'/reservationDetails': {
-			label : "Reservation Details",
-			},
-			...
-		});
+		```
+			/*reservations-details.en-US.ts*/
+			export const RESERVATION_DETAILS_I18N_EN_US = LfI18n.mergeTranslations({
+				...
+				'/reservationDetails': {
+				label : "Reservation Details",
+				},
+				...
+			});
 		
-		/*app.en.US.ts*/
-		export const I18N_SELF_CHECK_IN_EN_US = LfI18n.mergeTranslations(
-			...
-			RESERVATION_DETAILS_I18N_EN_US,
-			...
-		);
-	```
+			/*app.en.US.ts*/
+			export const I18N_SELF_CHECK_IN_EN_US = LfI18n.mergeTranslations(
+				...
+				RESERVATION_DETAILS_I18N_EN_US,
+				...
+			);
+		```
 	
 	6.4. Now build the schema for the reservation-detail component and record it inside the appSchema
-		 Note: don´t forget to declare the reservations-details as form setting the isForm attribute to true
+		 Note: don´t forget to declare the reservations-details as form by setting the `isForm` attribute to true
 		 
 		```
 			/*reservationDetails.schema.ts*/
@@ -131,64 +137,66 @@ _**Goal:** Define the structure of the application_
 			});
 		```
 		
-7.  Add a formt, called "guest", to the application:
+7.  Add a form, named "guest", to the application:
 
     7.1. Generate component with angular cli `ng generate component components/guests/components/guest`
 
     7.2. Create the guest.schema.ts and guest.en.US.ts files
 	
-	7.3. Create the translation for the guest-schema and add it the app.en.US file
+		7.3. Create the translation for the guest-schema and add it the app.en.US file
 	
-	```
-		/*guest.en-US.ts*/
-		export const GUEST_I18N_EN_US = LfI18n.mergeTranslations({
-			'/guests/?': {
-			[I18N_VALUE_LABEL_KEY] : "Guest",
-			},
+			```
+				/*guest.en-US.ts*/
+				export const GUEST_I18N_EN_US = LfI18n.mergeTranslations({
+					'/guests/?': {
+					[I18N_VALUE_LABEL_KEY] : "Guest",
+					},
 
-		});
-		
-		/*app.en.US.ts*/
-		export const I18N_SELF_CHECK_IN_EN_US = LfI18n.mergeTranslations(
-			...
-			GUEST_I18N_EN_US,
-			...
-		);
-	```
-	
-	7.4. Now build the schema for the guest component and record it inside the appSchema like in the step 6.4.
+				});
+
+				/*app.en.US.ts*/
+				export const I18N_SELF_CHECK_IN_EN_US = LfI18n.mergeTranslations(
+					...
+					GUEST_I18N_EN_US,
+					...
+				);
+			```
+
+			7.4. Now build the schema for the guest component and record it inside the appSchema like in the step 6.4.
 
 8.  Add a form-list, called "guests", to the application:
 
     8.1. Generate component with angular cli `ng generate component components/guests`
 	
-	8.2. Create the guests.schema.ts and guests.en.US.ts files
+		8.2. Create the guests.schema.ts and guests.en.US.ts files
 
     8.3. Create the translation for the guests-schema and add it the app.en.US file
-		Note: guests is a form list of guest forms, you need to have consider 
-		that by merging the GUEST_I18N_EN_US inside the GUESTS_I18N_EN_US 
-	```
-		/*guests.en-US.ts*/
-		export const GUESTS_I18N_EN_US = LfI18n.mergeTranslations({
-			GUEST_I18N_EN_US,
-			'/guests':{
-				[I18N_VALUE_LABEL_KEY] : "Guests"
-			},
-		});
-	```
+
+		Note: guests is a form list of guest forms, you need to need to merge the GUEST_I18N_EN_US
+		inside the GUESTS_I18N_EN_US 
+
+			```
+				/*guests.en-US.ts*/
+				export const GUESTS_I18N_EN_US = LfI18n.mergeTranslations({
+					GUEST_I18N_EN_US,
+					'/guests':{
+						[I18N_VALUE_LABEL_KEY] : "Guests"
+					},
+				});
+			```
 	
 	8.4. Now build the schema for the guests component and record it inside the appSchema
 		 Note: don´t forget to declare the guests as a list of forms by setting the isFormList attribute to true
 		 
-		```
-			/*guests.schema.ts*/
-			export const guestsSchema  = listSchema(guestSchema, {isFormList:true, minSize:1})
-			
-			/*app.schema.ts*/
-			export const appSchema = recordSchema({
-				guests: guestsSchema,
-			});
-		```
+			```
+				/*guests.schema.ts*/
+				export const guestsSchema  = listSchema(guestSchema, {isFormList:true, minSize:1})
+
+				/*app.schema.ts*/
+				export const appSchema = recordSchema({
+					guests: guestsSchema,
+				});
+			```
 
 9.  Add a sub-form inside reservation-detail's component:
 
@@ -199,71 +207,71 @@ _**Goal:** Define the structure of the application_
 	9.3. Create a listSchema inside the accomodationSchema that will be used in the future to create a table
 		 and put it inside the reservation-detail.schema
 	
-	```
-		/*accomodation.schema.ts*/
-		export const accomodationSchema  = recordSchema({
-			accomodationsTable: listSchema(
-				recordSchema({})
-			),
-		},{isForm:true});
+			```
+				/*accomodation.schema.ts*/
+				export const accomodationSchema  = recordSchema({
+					accomodationsTable: listSchema(
+						recordSchema({})
+					),
+				},{isForm:true});
+
+				...
 		
-		...
-		
-		/*reservationDetails.schema.ts*/
-		export const reservationDetailsSchema = recordSchema({
-			accomodation : accomodationSchema,
-		},{isForm:true});
-	```
+				/*reservationDetails.schema.ts*/
+				export const reservationDetailsSchema = recordSchema({
+					accomodation : accomodationSchema,
+				},{isForm:true});
+			```
 	
     9.4. Create the translation for the accomdation component and add it the app.en.US file
 		 and reservationDetails.en-US.
 		 
-	```	 
-		/*accomodation.en-US*/
-		export const ACCOMODATION_I18N_EN_US = LfI18n.mergeTranslations({
-			'/reservationDetails/accomodation':{
-				[I18N_VALUE_LABEL_KEY] : "Accomodation",
-			},
-		});
-		
-		/*reservationDetails.en-US*/
-		export const RESERVATION_DETAILS_I18N_EN_US = LfI18n.mergeTranslations({
-			...
-			ACCOMODATION_I18N_EN_US,
-			...
-		});
+			```	 
+				/*accomodation.en-US*/
+				export const ACCOMODATION_I18N_EN_US = LfI18n.mergeTranslations({
+					'/reservationDetails/accomodation':{
+						[I18N_VALUE_LABEL_KEY] : "Accomodation",
+					},
+				});
 
-    ```
+				/*reservationDetails.en-US*/
+				export const RESERVATION_DETAILS_I18N_EN_US = LfI18n.mergeTranslations({
+					...
+					ACCOMODATION_I18N_EN_US,
+					...
+				});
+
+  		  ```
 
 9.  In the same way, add two new sub forms to guest with the specification indicated below:
 
     9.1. Food component: path: "components/guests/components/guest/food"
 	
-	9.2. Create Food schema and es-US files with name: "food", label: "Food"
+		9.2. Create Food schema and es-US files with name: "food", label: "Food"
 
     9.3. Other Services component: path: "components/guests/components/guest/otherServices"
 
-	9.4. Create Other Services schema and es-US files with name: "otherServices", label: "Other Services"
+		9.4. Create Other Services schema and es-US files with name: "otherServices", label: "Other Services"
 	
-    9.5. Put the components inside the guests component as shown below:
+    9.5. Now you need to put the components inside the guests component as shown below:
 
-    ```
-		/*guest.schema.ts*/
-		export const guestSchema  = recordSchema({
-			food: foodSchema, 
-			otherServices : otherServicesSchema,   
-		}, {isForm:true})
-		
-		...
-		
-		/*guest.es-US.ts*/
-        export const GUEST_I18N_EN_US = LfI18n.mergeTranslations({
+    	```
+			/*guest.schema.ts*/
+			export const guestSchema  = recordSchema({
+				food: foodSchema, 
+				otherServices : otherServicesSchema,   
+			}, {isForm:true})
+
 			...
-			OTHER_SERVICES_I18N_EN_US,
-			FOOD_I18N_EN_US,
-			...
-		});
-    ```
+
+			/*guest.es-US.ts*/
+    	    export const GUEST_I18N_EN_US = LfI18n.mergeTranslations({
+				...
+				OTHER_SERVICES_I18N_EN_US,
+				FOOD_I18N_EN_US,
+				...
+			});
+    	```
 
 ### Checkpoint #2
 
@@ -272,32 +280,33 @@ _**Goal:** Fill the form components with LF fields_
 1.  Start the application executing the command `ng serve cp2-begin`
 2.  Add the fields below to reservation-detail component:
 
-	All the display features are realized in the en-US files and the logic restrictions are declred in the schema
+	All the display features are realized in the en-US files and the logic restrictions and input processment are declared in the schema,
+	you need to consider that in order to write code using good pratices and separe the logic from display functionalities
 
     2.1. **lf-text** (name: "email", code: "1.1", label: "E-mail address", minLength: 1)
 	
-	Note: the path you put on the html element needs to match the the schema and 
+		Note: the path you put on the html element needs to match the the schema and 
 		  the I18N file needs to have the right path otherwise no form elements will be displayed
 	
-	```
-		/*reservation-detail.component.html*/
-		...
-			<lf-text path = "email"></lf-text>
-		...
-		
-		/*reservation-detail.es-US.ts*/
-		...
-			'/reservationDetails/email': {
-				code: "1.1",
-				[I18N_VALUE_LABEL_KEY]: "E-mail",
-			},
-		...
-		
-		/*reservation-detail.schema.ts*/
-		...
-			email: stringSchema({}),
-		...
-	````
+			```
+				/*reservation-detail.component.html*/
+				...
+					<lf-text path = "email"></lf-text>
+				...
+
+				/*reservation-detail.es-US.ts*/
+				...
+					'/reservationDetails/email': {
+						code: "1.1",
+						[I18N_VALUE_LABEL_KEY]: "E-mail",
+					},
+				...
+
+				/*reservation-detail.schema.ts*/
+				...
+					email: stringSchema({}),
+				...
+			````
 
     2.2. **lf-text** (name: "phone", code: "1.2", label: "Phone Number", minLength: 1)
 
@@ -310,26 +319,26 @@ _**Goal:** Fill the form components with LF fields_
 3.  Add three tables for each meal on the food component using the sc-food-table previously created:
 
     ```
-		/*food.component.html*/
-		...
-			<sc-food-table #breakfastTable path="breakfastTable"></sc-food-table>
-			<sc-food-table #lunchTable path="lunchTable"></sc-food-table>
-			<sc-food-table #dinnerTable path="dinnerTable"></sc-food-table>
-		...
-		
-		/*food.schemas.ts*/
-		...
-			...foodTableSchema('breakfastTable'),
-			...foodTableSchema('lunchTable'),
-			...foodTableSchema('dinnerTable'),
-		...
-		
-		/*food.es-US.ts*/
-		export const FOOD_I18N_EN_US =  LfI18n.mergeTranslations({
-		...
-			FOOD_TABLE_I18N_EN_US,
-		...
-		})
+			/*food.component.html*/
+			...
+				<sc-food-table #breakfastTable path="breakfastTable"></sc-food-table>
+				<sc-food-table #lunchTable path="lunchTable"></sc-food-table>
+				<sc-food-table #dinnerTable path="dinnerTable"></sc-food-table>
+			...
+
+			/*food.schemas.ts*/
+			...
+				...foodTableSchema('breakfastTable'),
+				...foodTableSchema('lunchTable'),
+				...foodTableSchema('dinnerTable'),
+			...
+
+			/*food.es-US.ts*/
+			export const FOOD_I18N_EN_US =  LfI18n.mergeTranslations({
+			...
+				FOOD_TABLE_I18N_EN_US,
+			...
+			})
     ```
 
 ### Checkpoint #3
@@ -339,8 +348,8 @@ _**Goal:** Implement schema specifications for the LF fields_
 1.  Start the application executing the command `ng serve cp3-begin`
 2.  Add a minimum of 18 years old schema specification to the "birthDate" field on the guest component
 
-    ```
-        /* guest.schema.ts */
+  ```
+    /* guest.schema.ts */
 		...
 			birthDate: dateSchema({
 				isRequired : true,
