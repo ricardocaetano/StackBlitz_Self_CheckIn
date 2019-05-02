@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm install --saveExact && ng serve",
     "build": "ng build cp6-end --prod --aot=false --build-optimizer=false",
     "lint": "ng lint",
     "publish": "yarn build && yarn generate-html",
