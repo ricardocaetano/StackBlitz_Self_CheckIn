@@ -20,11 +20,10 @@
     "@types/bootstrap": "4.3.0",
     "@angular/compiler": "7.2.14",
     "@angular/animations": "7.1.4",
-    "@lightweightform/core": "4.0.0-restructure.8d8662f5",
-    "@lightweightform/storage": "4.0.0-restructure.8d8662f5",
+    "@lightweightform/bootstrap-theme": "4.0.0-beta.c5087706",
+    "@lightweightform/core": "4.0.0-beta.c5087706",
+    "@lightweightform/storage": "4.0.0-beta.c5087706",
     "@angular/platform-browser": "7.2.14",
-    "@lightweightform/virtual-scroll": "4.0.0-restructure.8d8662f5",
-    "@lightweightform/bootstrap-theme": "4.0.0-restructure.8d8662f5",
     "@angular/platform-browser-dynamic": "7.2.14"
   },
   "scripts": {
