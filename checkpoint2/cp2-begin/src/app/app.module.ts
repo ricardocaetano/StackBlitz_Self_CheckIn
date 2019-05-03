@@ -18,6 +18,7 @@ import { FoodTableComponent } from './components/guests/components/guest/food/fo
 import { AccommodationComponent } from './components/reservation-details/components/accommodation/accomodation.component';
 import { I18N_SELF_CHECK_IN_EN_US } from './app.en.US';
 
+
 @NgModule({
   imports: [
     BrowserModule,
