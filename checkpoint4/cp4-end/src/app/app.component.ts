@@ -1,8 +1,5 @@
 import {Component} from '@angular/core';
 import {LfStorage, LfI18n} from '@lightweightform/core';
-import { configure } from 'mobx';
-
-configure({ isolateGlobalState: true });
 
 @Component({
   selector: 'sc-root',
