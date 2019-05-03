@@ -6,8 +6,8 @@
       <lf-table-column id = "typeOfFood"></lf-table-column>
       <!--TODO CP4: create a price table column-->
     </lf-table-header>  
-    <ng-template #lfTableRowTemplate let-i="index">
-      <tr lfTableRow [path]="i" #tableRow>
+    <ng-template #lfTableRowTemplate  let-id="id" let-i="index">
+      <tr lfTableRow [path]="id" >
         <td lfTableCell>{{i + 1}}</td>
         <td lfTableCell><lf-date path = "date"></lf-date></td>
         <td lfTableCell><lf-select path="typeOfFood"></lf-select></td>
