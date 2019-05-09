@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cp2-begin": {
+    "lf-self-checkIn": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -35,36 +35,36 @@
               "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": false
+              "buildOptimizer": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cp2-begin:build"
+            "browserTarget": "lf-self-checkIn:build"
           },
           "configurations": {}
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cp2-begin:build"
+            "browserTarget": "lf-self-checkIn:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "checkpoints/checkpoint2/begin/src/undefined",
+            "main": "src/undefined",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "checkpoints/checkpoint2/begin/src/polyfills.ts",
+            "polyfills": "src/polyfills.ts",
             "scripts": [],
             "styles": [
-              "checkpoints/checkpoint2/begin/src/styles.scss"
+              "src/styles.scss"
             ],
             "assets": [
-              "checkpoints/checkpoint2/begin/src/assets",
-              "checkpoints/checkpoint2/begin/src/favicon.ico"
+              "src/assets",
+              "src/favicon.ico"
             ]
           }
         },
@@ -83,7 +83,7 @@
       }
     }  
 },
-  "defaultProject": "cp2-begin",
+  "defaultProject": "lf-self-checkIn",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "sc",
