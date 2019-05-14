@@ -1,4 +1,4 @@
-# StackBlitz_Self_CheckIn
+# SelfCheckIn App
 ## LF starter guide
 
 Welcome to <a href="https://bitbucket.org/opensoftgitrepo/lightweightform" target="_blank">Lightweightform (LF)</a>
