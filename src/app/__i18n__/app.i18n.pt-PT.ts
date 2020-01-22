@@ -10,7 +10,10 @@ export const appI18nPtPT: Record<string, any> = {
       validate: 'Validar',
       finalize: 'Finalizar'
     },
-    finalizeModalTitle: 'Finalizar reserva'
+    finalizeModalTitle: 'Confirme a reserva',
+    finalizeModalCancel: 'Cancelar',
+    finalizeModalConfirm: 'Finalizar reserva',
+    reservationConfirmed: 'Reserva confirmada'
   },
   '/': {
     label: 'Reserva de hotel'

@@ -12,25 +12,33 @@
     </div>
   </div>
 
-  <lf-table path="accommodation">
+  <lf-textarea path="special-requests"></lf-textarea>
+
+  <lf-table path="rooms">
     <lf-table-header>
       <lf-table-column
         id="index"
         [fixed]="true"
         [minWidth]="60"
       ></lf-table-column>
-      <lf-table-column id="room-type"></lf-table-column>
+      <lf-table-column id="type"></lf-table-column>
+      <lf-table-column id="price"></lf-table-column>
       <lf-table-column id="smoking-room"></lf-table-column>
     </lf-table-header>
 
     <ng-template #lfTableRowTemplate let-id="id" let-i="index">
       <tr lf-table-row [path]="id">
         <td lf-table-cell>{{ i + 1 }}</td>
-        <td lf-table-cell><lf-select path="room-type"></lf-select></td>
+        <td lf-table-cell><lf-select path="type"></lf-select></td>
+        <td lf-table-cell><lf-number path="price" [scale]="2"></lf-number></td>
         <td lf-table-cell><lf-checkbox path="smoking-room"></lf-checkbox></td>
       </tr>
     </ng-template>
   </lf-table>
 
-  <lf-textarea path="special-requests"></lf-textarea>
+  <div class="row">
+    <div class="offset-sm-6 col-sm-6 mb-3">
+      <lf-number path="total-amount" [scale]="2"></lf-number>
+    </div>
+  </div>
 </lf-form>

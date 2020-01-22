@@ -17,6 +17,8 @@ import {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  reservationConfirmed = false;
+
   actions: ActionsMenuAction[] = [
     {
       id: 'save',
@@ -94,10 +96,14 @@ export class AppComponent implements OnInit {
 
   finalize(): void {
     if (!this.lfStorage.hasErrors()) {
-      const appJSON = JSON.stringify(this.lfStorage.getAsJS());
       this.finalizeModal.show();
     } else {
       this.lfApp.validate();
     }
+  }
+
+  confirmFinalize(): void {
+    this.finalizeModal.hide();
+    this.reservationConfirmed = true;
   }
 }

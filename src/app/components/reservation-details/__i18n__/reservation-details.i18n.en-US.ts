@@ -1,3 +1,16 @@
+import { LfStorage } from '@lightweightform/core';
+import { NumericInput } from '@lightweightform/numeric-input';
+
+/**
+ * Currency options for the en-US locale.
+ */
+const currencyOptions = {
+  scale: 2,
+  thousandsSeparator: ',',
+  prefix: '€',
+  suffix: ''
+};
+
 /**
  * Reservation details i18n object for the en-US locale.
  */
@@ -16,32 +29,43 @@ export const reservationDetailsI18nEnUS: Record<string, any> = {
     }
   },
   '/reservation-details/phone-number': {
-    label: 'Phone number'
+    label: 'Phone number',
+    validations: {
+      INVALID_PHONE_NUMBER: 'The phone number is invalid.'
+    }
   },
   '/reservation-details/check-in-out': {
     label: 'Check-in/check-out dates',
-    legend: 'Check-in from 16:00h to 23:00h, check-out until 12:00h'
+    legend: 'Check-in from 16:00h to 23:00h, check-out until 12:00h',
+    validations: {
+      CHECK_IN_OUT_SAME_DAY:
+        'The check-in and check-out cannot be on the same day.'
+    }
   },
   '/reservation-details/check-in-hour': {
     label: 'Arrival time',
     suffix: 'h',
     helpMessage: 'Approximate check-in hour (if known)'
   },
-  '/reservation-details/accommodation': {
-    label: 'Accommodation',
+  '/reservation-details/special-requests': {
+    label: 'Special requests'
+  },
+  '/reservation-details/rooms': {
+    label: 'Rooms',
     addRowActionText: 'Add room',
     removeRowsActionText: 'Remove rooms',
     noRowsText: 'No rooms added.',
     columnLabels: {
       index: '#',
-      'room-type': 'Room type',
+      type: 'Room type',
+      price: 'Room price',
       'smoking-room': 'Smoking room?'
     },
     validations: {
-      LF_SIZE_OUT_OF_BOUNDS: 'At least one room must be added.'
+      LF_SIZE_OUT_OF_BOUNDS: 'At least 1 room must be added.'
     }
   },
-  '/reservation-details/accommodation/?/room-type': {
+  '/reservation-details/rooms/?/type': {
     label: 'Room type',
     options: [
       { value: 'single', label: 'Single' },
@@ -49,10 +73,25 @@ export const reservationDetailsI18nEnUS: Record<string, any> = {
       { value: 'twin', label: 'Twin' }
     ]
   },
-  '/reservation-details/accommodation/?/smoking-room': {
+  '/reservation-details/rooms/?/price': {
+    label: 'Room price',
+    ...currencyOptions
+  },
+  '/reservation-details/rooms/?/smoking-room': {
     label: 'Room for smokers?'
   },
-  '/reservation-details/special-requests': {
-    label: 'Special requests'
+  '/reservation-details/total-amount': {
+    label: 'Total amount',
+    ...currencyOptions,
+    legend: (ctx: LfStorage) => {
+      if (ctx.get() === null) {
+        return '';
+      }
+      const nightsSpent = ctx.get('../nights-spent');
+      const amountPerNight = ctx.get('../amount-per-night');
+      return `${nightsSpent} night${
+        nightsSpent === 1 ? '' : 's'
+      } at ${NumericInput.format(amountPerNight, currencyOptions)} per night`;
+    }
   }
 };

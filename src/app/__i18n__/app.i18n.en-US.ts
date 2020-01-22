@@ -18,7 +18,10 @@ export const appI18nEnUS: Record<string, any> = {
         'pt-PT': 'Português'
       }
     },
-    finalizeModalTitle: 'Finalize reservation'
+    finalizeModalTitle: 'Confirm reservation',
+    finalizeModalCancel: 'Cancel',
+    finalizeModalConfirm: 'Finalize reservation',
+    reservationConfirmed: 'Reservation confirmed'
   },
   '/': {
     label: 'Hotel reservation'
